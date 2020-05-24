@@ -22,6 +22,7 @@ public class Paddle {
 
             this.x = pong.width - width;
         }
+
         this.y = pong.height / 2 - this.height / 2;
     }
 
@@ -45,7 +46,7 @@ public class Paddle {
 
                 y = 0;
             }
-        } else
+        } else {
 
             if (y + height + speed < Pong.pong.height) {
 

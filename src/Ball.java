@@ -1,3 +1,5 @@
+
+
 import java.awt.Color;
 import java.awt.Graphics;
 import java.util.Random;
@@ -95,7 +97,7 @@ public class Ball {
         this.motionY = -2 + random.nextInt(4);
 
         if (motionY == 0) {
-            
+
             motionY = 1;
         }
 

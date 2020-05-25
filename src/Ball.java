@@ -95,7 +95,7 @@ public class Ball {
         this.motionY = -2 + random.nextInt(4);
 
         if (motionY == 0) {
-
+            
             motionY = 1;
         }
 

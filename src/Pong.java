@@ -14,29 +14,27 @@ import javax.swing.Timer;
 
 public class Pong implements ActionListener, KeyListener {
 
-    public static Pong pong;
-
-    public int width = 1445, height = 835;
-
-    public Renderer renderer;
-
-    public Paddle player1;
-
-    public Paddle player2;
-
-    public Ball ball;
-
-    public boolean bot = false, selectingDifficulty;
-
-    public boolean w, s, up, down;
-
-    public int gameStatus = 0, scoreLimit = 7, playerWon; //0 = Menu, 1 = Paused, 2 = Playing, 3 = Over
-
-    public int botDifficulty, botMoves, botCoolDown = 0;
-
-    public Random random;
-
-    public JFrame jframe;
+    private static Pong pong;
+    private int width = 1445;
+    private int height = 835;
+    private Renderer renderer;
+    private Paddle player1;
+    private Paddle player2;
+    private Ball ball;
+    private boolean bot = false;
+    private boolean selectingDifficulty;
+    public boolean w;
+    private boolean s;
+    private boolean up;
+    private boolean down;
+    private int gameStatus = 0; //0 = Menu, 1 = Paused, 2 = Playing, 3 = Over
+    private int scoreLimit = 7;
+    private int playerWon;
+    private int botDifficulty;
+    private int botMoves;
+    private int botCoolDown = 0;
+    private Random random;
+    private JFrame jframe;
 
     public Pong() {
         Timer timer = new Timer(20, this);
@@ -63,12 +61,12 @@ public class Pong implements ActionListener, KeyListener {
     }
 
     public void update() {
-        if (player1.score >= scoreLimit) {
+        if (player1.getScore() >= scoreLimit) {
             playerWon = 1;
             gameStatus = 3;
         }
 
-        if (player2.score >= scoreLimit) {
+        if (player2.getScore() >= scoreLimit) {
             gameStatus = 3;
             playerWon = 2;
         }
@@ -90,19 +88,19 @@ public class Pong implements ActionListener, KeyListener {
             }
 
             if (botMoves < 10) {
-                if (player1.y + player1.height / 2 < ball.y && ball.x < (width/2)) {
+                if (player1.getY() + player1.getHeight() / 2 < ball.getY() && ball.getX() < (width/2)) {
                     player1.move(false);
                     botMoves++;
                 }
 
-                if (player1.y + player1.height / 2 > ball.y && ball.x < (width/2)) {
+                if (player1.getY() + player1.getHeight() / 2 > ball.getY() && ball.getX() < (width/2)) {
                     player1.move(true);
                     botMoves++;
                 }
 
                 if (botDifficulty == 0) {
 
-                    botCoolDown = 20;
+                    botCoolDown = 30;
                 }
                 if (botDifficulty == 1) {
 
@@ -181,8 +179,8 @@ public class Pong implements ActionListener, KeyListener {
 
             g.setFont(new Font("Arial", 1, 50));
 
-            g.drawString(String.valueOf(player1.score), width / 2 - 90, 50);
-            g.drawString(String.valueOf(player2.score), width / 2 + 65, 50);
+            g.drawString(String.valueOf(player1.getScore()), width / 2 - 90, 50);
+            g.drawString(String.valueOf(player2.getScore()), width / 2 + 65, 50);
 
             player1.render(g);
             player2.render(g);
@@ -210,6 +208,18 @@ public class Pong implements ActionListener, KeyListener {
             g.drawString("Press Space to Play Again", width / 2 - 185, height / 2 - 25);
             g.drawString("Press ESC for Menu", width / 2 - 140, height / 2 + 25);
         }
+    }
+
+    public static Pong getPong() {
+        return pong;
+    }
+
+    public int getWidth() {
+        return width;
+    }
+
+    public int getHeight() {
+        return height;
     }
 
     @Override

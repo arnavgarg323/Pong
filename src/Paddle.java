@@ -3,11 +3,11 @@ import java.awt.Graphics;
 
 public class Paddle {
 
-    private int paddleNumber;
+    private final int paddleNumber;
     private int x;
     private int y;
-    private int width = 25;
-    private int height = 250;
+    private final int width = 25;
+    private final int height = 250;
     private int score;
 
     public Paddle(Pong pong, int paddleNumber) {

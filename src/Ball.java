@@ -6,12 +6,12 @@ public class Ball {
 
     private int x;
     private int y;
-    private int width = 25;
-    private int height = 25;
+    private final int width = 25;
+    private final int height = 25;
     private int motionX;
     private int motionY;
-    private Random random;
-    private Pong pong;
+    private final Random random;
+    private final Pong pong;
     private int amountOfHits;
 
     public Ball(Pong pong) {

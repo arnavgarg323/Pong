@@ -15,9 +15,9 @@ import javax.swing.Timer;
 public class Pong implements ActionListener, KeyListener {
 
     private static Pong pong;
-    private int width = 1445;
-    private int height = 835;
-    private Renderer renderer;
+    private final int width = 1445;
+    private final int height = 835;
+    private final Renderer renderer;
     private Paddle player1;
     private Paddle player2;
     private Ball ball;
@@ -33,14 +33,12 @@ public class Pong implements ActionListener, KeyListener {
     private int botDifficulty;
     private int botMoves;
     private int botCoolDown = 0;
-    private Random random;
-    private JFrame jframe;
 
     public Pong() {
         Timer timer = new Timer(20, this);
-        random = new Random();
+        new Random();
 
-        jframe = new JFrame("Pong");
+        JFrame jframe = new JFrame("Pong");
 
         renderer = new Renderer();
 
@@ -134,13 +132,13 @@ public class Pong implements ActionListener, KeyListener {
         if (gameStatus == 0) {
 
             g.setColor(Color.WHITE);
-            g.setFont(new Font("Arial", 1, 50));
+            g.setFont(new Font("Arial", Font.BOLD, 50));
 
             g.drawString("PONG", width / 2 - 75, 50);
 
             if (!selectingDifficulty) {
 
-                g.setFont(new Font("Arial", 1, 30));
+                g.setFont(new Font("Arial", Font.BOLD, 30));
 
                 g.drawString("Press Space to Play", width / 2 - 150, height / 2 - 25);
                 g.drawString("Press Shift to Play with Bot", width / 2 - 200, height / 2 + 25);
@@ -152,7 +150,7 @@ public class Pong implements ActionListener, KeyListener {
 
             String string = botDifficulty == 0 ? "Easy" : (botDifficulty == 1 ? "Medium" : "Hard");
 
-            g.setFont(new Font("Arial", 1, 30));
+            g.setFont(new Font("Arial", Font.BOLD, 30));
 
             g.drawString("<< Bot Difficulty: " + string + " >>", width / 2 - 180, height / 2 - 25);
             g.drawString("Press Space to Play", width / 2 - 150, height / 2 + 25);
@@ -161,7 +159,7 @@ public class Pong implements ActionListener, KeyListener {
         if (gameStatus == 1) {
 
             g.setColor(Color.WHITE);
-            g.setFont(new Font("Arial", 1, 50));
+            g.setFont(new Font("Arial", Font.BOLD, 50));
             g.drawString("PAUSED", width / 2 - 103, height / 2 - 25);
         }
 
@@ -177,7 +175,7 @@ public class Pong implements ActionListener, KeyListener {
 
             g.drawOval(width / 2 - 150, height / 2 - 150, 300, 300);
 
-            g.setFont(new Font("Arial", 1, 50));
+            g.setFont(new Font("Arial", Font.BOLD, 50));
 
             g.drawString(String.valueOf(player1.getScore()), width / 2 - 90, 50);
             g.drawString(String.valueOf(player2.getScore()), width / 2 + 65, 50);
@@ -190,7 +188,7 @@ public class Pong implements ActionListener, KeyListener {
         if (gameStatus == 3) {
 
             g.setColor(Color.WHITE);
-            g.setFont(new Font("Arial", 1, 50));
+            g.setFont(new Font("Arial", Font.BOLD, 50));
 
             g.drawString("PONG", width / 2 - 75, 50);
 
@@ -203,7 +201,7 @@ public class Pong implements ActionListener, KeyListener {
                 g.drawString("Player " + playerWon + " Wins!", width / 2 - 165, 200);
             }
 
-            g.setFont(new Font("Arial", 1, 30));
+            g.setFont(new Font("Arial", Font.BOLD, 30));
 
             g.drawString("Press Space to Play Again", width / 2 - 185, height / 2 - 25);
             g.drawString("Press ESC for Menu", width / 2 - 140, height / 2 + 25);
